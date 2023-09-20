@@ -136,6 +136,7 @@ export type ModalProps = {
   defaultPosition?: DraggableProps['defaultPosition'];
   positionOffset?: DraggableProps['positionOffset'];
   hasWindowButton?: boolean;
+  draggableProps?: Partial<DraggableProps>
 } & Omit<WrapperProps, 'active'> &
   ButtonWrapperProps &
   React.HTMLAttributes<HTMLDivElement>;
@@ -154,6 +155,7 @@ const ModalRenderer = (
     menu,
     title,
     width,
+    draggableProps = {},
     ...rest
   }: ModalProps,
   ref: React.Ref<HTMLDivElement>,
@@ -191,6 +193,7 @@ const ModalRenderer = (
 
   return (
     <Draggable
+      {...draggableProps}
       handle=".draggable"
       defaultPosition={defaultPosition}
       positionOffset={positionOffset}
